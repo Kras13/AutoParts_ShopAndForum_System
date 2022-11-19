@@ -1,32 +1,26 @@
-﻿using AutoParts_ShopAndForum_System.Models;
+﻿using AutoParts_ShopAndForum.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace AutoParts_ShopAndForum_System.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ICategoryService _categoryService;
+        public HomeController(ICategoryService categoryService)
         {
-            _logger = logger;
+            _categoryService = categoryService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var categories = _categoryService.GetAll();
+
+            return View(categories);
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

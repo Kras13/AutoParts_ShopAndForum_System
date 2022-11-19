@@ -1,4 +1,6 @@
-﻿using AutoParts_ShopAndForum.Infrastructure.Data;
+﻿using AutoParts_ShopAndForum.Core.Contracts;
+using AutoParts_ShopAndForum.Core.Services;
+using AutoParts_ShopAndForum.Infrastructure.Data;
 using AutoParts_ShopAndForum.Infrastructure.Data.Common;
 using AutoParts_ShopAndForum.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
@@ -42,7 +44,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
         public static IServiceCollection ConfigureBusinessServices(this IServiceCollection services)
         {
             services.AddTransient<IRepository, Repository>();
-            //services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             //services.AddTransient<IProductService, ProductService>();
             //services.AddTransient<ISubcategoryService, SubcategoryService>();
 
