@@ -45,8 +45,8 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
         {
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<ICategoryService, CategoryService>();
-            //services.AddTransient<IProductService, ProductService>();
-            //services.AddTransient<ISubcategoryService, SubcategoryService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ISubcategoryService, SubcategoryService>();
 
             return services;
         }

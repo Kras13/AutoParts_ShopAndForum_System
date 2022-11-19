@@ -7,7 +7,7 @@ namespace AutoParts_ShopAndForum.Core.Services
 {
     public class SubcategoryService : ISubcategoryService
     {
-        private readonly IRepository _repository
+        private readonly IRepository _repository;
         public SubcategoryService(IRepository repository)
         {
             _repository = repository;

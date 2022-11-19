@@ -15,7 +15,7 @@ namespace AutoParts_ShopAndForum_System.Controllers
             _subcategoryService= subcategoryService;
         }
 
-        public IActionResult Queried(ProductQueryViewModel model)
+        public IActionResult All(ProductQueryViewModel model)
         {
             var queryModel = _productService.GetQueried(
                model.CurrentPage,
@@ -34,6 +34,7 @@ namespace AutoParts_ShopAndForum_System.Controllers
             }
 
             model.Products = queryModel.Products;
+            model.TotalProducts = queryModel.TotalProductsWithoutPagination;
 
             return View(model);
         }
