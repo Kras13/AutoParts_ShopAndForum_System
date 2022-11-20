@@ -1,0 +1,52 @@
+﻿@using AutoParts_ShopAndForum.Core.Models.Post;
+
+@model PostModel
+
+@{
+    this.ViewData["Title"] = Model.Title;
+
+    void DisplayComments(int? parentId)
+    {
+        var comments = this.Model.Comments.Where(x => x.ParentId == parentId);
+        if (!comments.Any())
+        {
+            return;
+        }
+
+        @foreach (var comment in comments)
+        {
+            <div class="card">
+                <div class="card-header">
+                    @comment.CreatorUsername, @Html.Raw("&nbsp") @comment.CreatedOn
+                </div>
+                <div class="card-body">
+                    @comment.Content
+                </div>
+
+                @{
+                    DisplayComments(comment.Id);
+                }
+
+            </div>
+        }
+    }
+}
+
+<div class="card">
+    <div class="card-header">
+        @Model.Title
+    </div>
+    <div class="card-body">
+        @Model.Content
+    </div>
+
+    @{
+        DisplayComments(null);
+    }
+</div>
+
+<style>
+    .card {
+        height: fit-content;
+    }
+</style>
