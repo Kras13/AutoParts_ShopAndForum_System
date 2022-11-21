@@ -1,6 +1,6 @@
 ﻿namespace AutoParts_ShopAndForum.Infrastructure.Data.Constants
 {
-    internal class ProductConstants
+    public class ProductConstants
     {
         public const int NameMaxLength = 32;
 

@@ -1,5 +1,6 @@
 ﻿using AutoParts_ShopAndForum.Core.Contracts;
 using AutoParts_ShopAndForum.Core.Models.Category;
+using AutoParts_ShopAndForum.Core.Models.Subcaregory;
 using AutoParts_ShopAndForum.Infrastructure.Data.Common;
 using AutoParts_ShopAndForum.Infrastructure.Data.Models;
 
@@ -25,6 +26,13 @@ namespace AutoParts_ShopAndForum.Core.Services
                     ImageUrl = m.ImageUrl
                 }
                 )
+                .ToArray();
+        }
+
+        public ICollection<SubcategoryModel> GetAllSubcategories()
+        {
+            return _repository.All<Subcategory>()
+                .Select(m => new SubcategoryModel() { Id = m.Id, Name = m.Name })
                 .ToArray();
         }
     }
