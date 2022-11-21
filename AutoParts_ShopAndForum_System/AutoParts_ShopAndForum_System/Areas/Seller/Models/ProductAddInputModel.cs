@@ -24,12 +24,12 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Models
         [MinLength(2, ErrorMessage = "Please enter at least 2 symbols")]
         public string Description { get; set; }
 
-        public ICollection<SubcategoryModel> Subcategories { get; set; }
+        public ICollection<SubcategoryModel>? Subcategories { get; set; }
 
         [Required]
         [Display(Name = "Subcategory")]
         public int SelectedSubcategoryId { get; set; }
 
-        public string CreatorId { get; set; }
+        public string? CreatorId { get; set; }
     }
 }

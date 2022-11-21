@@ -27,10 +27,11 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(ProductAddInputModel model)
+        public async Task<IActionResult> Add(ProductAddInputModel model)
         {
             if (!ModelState.IsValid)
             {
+                model.Subcategories = _categoryService.GetAllSubcategories();
                 return View(model);
             }
 
@@ -39,7 +40,7 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
                 throw new InvalidOperationException("Products/Add -> Only Sellers and Admins can add products");
             }
 
-            _productService.Add(
+            await _productService.AddAsync(
                 model.Name,
                 model.Price,
                 model.ImageUrl,
@@ -48,7 +49,7 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
                 this.User.GetId()
             );
 
-            return RedirectToAction("All", "Products", new { area = "", subcategoryId = model.SelectedSubcategoryId });
+            return RedirectToAction("All", "Products", new { area = "" });
         }
     }
 }

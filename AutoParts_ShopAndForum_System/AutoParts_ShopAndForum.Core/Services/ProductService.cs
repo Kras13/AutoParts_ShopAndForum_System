@@ -16,7 +16,7 @@ namespace AutoParts_ShopAndForum.Core.Services
             _repository = repository;
         }
 
-        public async Task<int> Add(
+        public async Task<int> AddAsync(
             string name, 
             decimal price, 
             string imageUrl, 
@@ -35,6 +35,7 @@ namespace AutoParts_ShopAndForum.Core.Services
             };
 
             await _repository.AddAsync(entity);
+            await _repository.SaveChangesAsync();
 
             return entity.Id;
         }

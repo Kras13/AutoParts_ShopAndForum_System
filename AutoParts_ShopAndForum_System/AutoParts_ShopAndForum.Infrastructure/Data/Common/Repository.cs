@@ -37,5 +37,15 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
         {
             await DbSet<T>().AddAsync(entity);
         }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

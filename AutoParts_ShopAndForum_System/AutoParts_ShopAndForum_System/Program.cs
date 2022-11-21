@@ -1,4 +1,5 @@
 using AutoParts_ShopAndForum_System.Infrastructure;
+using AutoParts_ShopAndForum_System.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,12 @@ builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.ConfigureContextIdentity();
 builder.Services.ConfigureBusinessServices();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        options.ModelBinderProviders.Insert(0, new DecimalModelBiinderProvicer());
+    });
 
 var app = builder.Build();
 
