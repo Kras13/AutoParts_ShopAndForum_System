@@ -23,14 +23,19 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
                 .AsNoTracking();
         }
 
-        public IQueryable<T> ByIdAsync<T>() where T : class
-        {
-            throw new NotImplementedException();
-        }
-
         private DbSet<T> DbSet<T>() where T : class
         {
             return _context.Set<T>();
+        }
+
+        public async Task<T> GetByIdAsync<T>(object id) where T : class
+        {
+            return await DbSet<T>().FindAsync(id);
+        }
+
+        public async Task AddAsync<T>(T entity) where T : class
+        {
+            await DbSet<T>().AddAsync(entity);
         }
     }
 }

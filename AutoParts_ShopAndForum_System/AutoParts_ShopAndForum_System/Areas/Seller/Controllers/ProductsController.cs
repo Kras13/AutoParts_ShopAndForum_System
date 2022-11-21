@@ -1,6 +1,6 @@
 ﻿using AutoParts_ShopAndForum.Core.Contracts;
-using AutoParts_ShopAndForum.Core.Services;
 using AutoParts_ShopAndForum_System.Areas.Seller.Models;
+using AutoParts_ShopAndForum_System.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
@@ -24,6 +24,31 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Add(ProductAddInputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (!this.User.IsAdmin() && !this.User.IsSeller())
+            {
+                throw new InvalidOperationException("Products/Add -> Only Sellers and Admins can add products");
+            }
+
+            _productService.Add(
+                model.Name,
+                model.Price,
+                model.ImageUrl,
+                model.Description,
+                model.SelectedSubcategoryId,
+                this.User.GetId()
+            );
+
+            return RedirectToAction("All", "Products", new { area = "", subcategoryId = model.SelectedSubcategoryId });
         }
     }
 }

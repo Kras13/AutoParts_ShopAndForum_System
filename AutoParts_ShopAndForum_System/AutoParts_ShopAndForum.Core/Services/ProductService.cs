@@ -16,12 +16,35 @@ namespace AutoParts_ShopAndForum.Core.Services
             _repository = repository;
         }
 
+        public async Task<int> Add(
+            string name, 
+            decimal price, 
+            string imageUrl, 
+            string description, 
+            int subcategoryId, 
+            string creatorId)
+        {
+            var entity = new Product()
+            {
+                Name = name,
+                Price = price,
+                ImageUrl = imageUrl,
+                Description = description,
+                SubcategoryId = subcategoryId,
+                CreatorId = creatorId
+            };
+
+            await _repository.AddAsync(entity);
+
+            return entity.Id;
+        }
+
         public ProductQueryModel GetQueried(
-            int currentPage, 
-            int productsPerPage, 
-            string searchCriteria, 
-            ProductSorting sorting, 
-            int? categoryId = null, 
+            int currentPage,
+            int productsPerPage,
+            string searchCriteria,
+            ProductSorting sorting,
+            int? categoryId = null,
             ICollection<int> selectedSubcategories = null)
         {
             var entities = _repository
