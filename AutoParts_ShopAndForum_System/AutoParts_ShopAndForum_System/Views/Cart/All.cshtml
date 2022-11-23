@@ -173,8 +173,7 @@
     {
     <script>
         var ChangeQuantity = function (ItemId) {
-        @*QuantityInput+@(item.Id.ToString())*@
-                            var selectedComponent = "QuantityInput" + ItemId.toString();
+            var selectedComponent = "QuantityInput" + ItemId.toString();
             var itemQuantity = $("#" + selectedComponent).val();
 
             $.ajax({

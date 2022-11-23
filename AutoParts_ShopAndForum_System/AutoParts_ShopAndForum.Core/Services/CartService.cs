@@ -23,5 +23,17 @@ namespace AutoParts_ShopAndForum.Core.Services
                 cart.Add(product);
             }
         }
+
+        public void ChangeQuantity(ref ICollection<ProductCartModel> cart, int productId, int quantity)
+        {
+            var product = cart.FirstOrDefault(m => m.Id == productId);
+
+            if (product == null)
+            {
+                throw new ArgumentException("CartService.ChangeQuantity -> Invalid productId");
+            }
+
+            product.Quantity = quantity;
+        }
     }
 }

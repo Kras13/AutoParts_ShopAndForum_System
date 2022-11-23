@@ -5,5 +5,7 @@ namespace AutoParts_ShopAndForum.Core.Contracts
     public interface ICartService
     {
         void Add(ref ICollection<ProductCartModel> cart, ProductCartModel product);
+
+        public void ChangeQuantity(ref ICollection<ProductCartModel> cart, int productId, int quantity);
     }
 }
