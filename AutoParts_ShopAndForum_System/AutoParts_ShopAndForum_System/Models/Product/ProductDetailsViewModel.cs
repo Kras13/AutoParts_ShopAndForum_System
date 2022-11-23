@@ -1,4 +1,5 @@
 ﻿using AutoParts_ShopAndForum.Core.Models.Product;
+using System.ComponentModel.DataAnnotations;
 
 namespace AutoParts_ShopAndForum_System.Models.Product
 {
@@ -16,8 +17,17 @@ namespace AutoParts_ShopAndForum_System.Models.Product
 
         public string LastUrl { get; set; } = string.Empty;
 
+        [Range(1, 10)]
         public int Quantity { get; set; } = 1;
 
         public bool AddedToCart { get; set; }
+
+        public decimal Total
+        {
+            get
+            {
+                return Quantity * Price;
+            }
+        }
     }
 }

@@ -4,6 +4,6 @@ namespace AutoParts_ShopAndForum.Core.Contracts
 {
     public interface ICartService
     {
-        bool Add(ICollection<ProductCartModel> Cart, ProductCartModel product);
+        void Add(ref ICollection<ProductCartModel> cart, ProductCartModel product);
     }
 }

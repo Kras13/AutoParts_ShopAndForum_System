@@ -1,7 +1,6 @@
 ﻿using AutoParts_ShopAndForum.Core.Contracts;
 using AutoParts_ShopAndForum.Core.Models.Cart;
 using AutoParts_ShopAndForum_System.Infrastructure;
-using AutoParts_ShopAndForum_System.Models.Cart;
 using AutoParts_ShopAndForum_System.Models.Constant;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +14,11 @@ namespace AutoParts_ShopAndForum_System.Controllers
             _cartService = cartService;
         }
 
-        public IActionResult Add(ProductCartViewModel model, string lastUrl)
+        public IActionResult Add(ProductCartModel model, string lastUrl)
         {
             var cart = HttpContext.Session.GetObject<ICollection<ProductCartModel>>(CartConstant.Cart);
 
-            _cartService.Add(cart, model);
+            _cartService.Add(ref cart, model);
 
             HttpContext.Session.SetObject(CartConstant.Cart, cart);
 
