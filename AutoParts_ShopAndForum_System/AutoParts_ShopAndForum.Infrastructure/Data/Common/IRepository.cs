@@ -1,4 +1,6 @@
-﻿namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
 {
     public interface IRepository
     {
@@ -10,8 +12,12 @@
 
         public Task AddAsync<T>(T entity) where T : class;
 
+        public void Add<T>(T entity) where T : class;
+
         void SaveChanges();
 
         Task SaveChangesAsync();
+
+        IDbContextTransaction StartTransaction();
     }
 }

@@ -14,7 +14,9 @@
     }
 }
 
-@if (Model != null)
+<h1>Shopping basket</h1>
+
+@if (Model != null && Model.Products != null)
 {
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
     {

@@ -3,6 +3,7 @@ using AutoParts_ShopAndForum.Core.Models.Cart;
 using AutoParts_ShopAndForum_System.Infrastructure;
 using AutoParts_ShopAndForum_System.Models.Cart;
 using AutoParts_ShopAndForum_System.Models.Constant;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoParts_ShopAndForum_System.Controllers
@@ -70,6 +71,27 @@ namespace AutoParts_ShopAndForum_System.Controllers
             cartCollection.Remove(selectedModel);
 
             HttpContext.Session.SetObject(CartConstant.Cart, cartCollection);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void Finalise(string street, int townId)
+        {
+            var cart = HttpContext.Session.GetObject<ICollection<ProductCartModel>>("Cart");
+
+            if (cart == null || cart.Count == 0)
+            {
+                throw new InvalidOperationException("Can not finalise an empty Cart...");
+            }
+
+            int orderId = _cartService.Order(ref cart, this.User.GetId(), street, townId);
+
+            HttpContext.Session.SetObject(CartConstant.Cart, cart);
+
+            if (orderId > 0)
+            {
+                TempData["OrderSuccessful"] = 1;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
 {
@@ -33,6 +34,12 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
             return await DbSet<T>().FindAsync(id);
         }
 
+        public void Add<T>(T entity) where T : class
+        {
+            DbSet<T>().Add(entity);
+        }
+
+
         public async Task AddAsync<T>(T entity) where T : class
         {
             await DbSet<T>().AddAsync(entity);
@@ -46,6 +53,11 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public IDbContextTransaction StartTransaction()
+        {
+            return _context.Database.BeginTransaction();
         }
     }
 }

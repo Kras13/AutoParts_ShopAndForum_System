@@ -24,13 +24,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Forum" asp-controller="Products" asp-action="All">All</a>
                         </li>
                         @if (this.User.IsAdmin() || this.User.IsSeller())
                         {
@@ -42,7 +39,7 @@
 
                     <partial name="_LoginPartial" />
 
-                    <ul style="padding-left: 20px">
+                    <ul style="list-style: none">
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Cart" asp-action="All">
                                 <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/shopping_cart.png" alt="HTML tutorial" style="width:42px;height:42px;">
