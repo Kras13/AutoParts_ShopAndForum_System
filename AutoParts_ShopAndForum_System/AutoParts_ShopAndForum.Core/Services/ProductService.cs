@@ -16,12 +16,12 @@ namespace AutoParts_ShopAndForum.Core.Services
             _repository = repository;
         }
 
-        public async Task<int> AddAsync(
-            string name, 
-            decimal price, 
-            string imageUrl, 
-            string description, 
-            int subcategoryId, 
+        public int Add(
+            string name,
+            decimal price,
+            string imageUrl,
+            string description,
+            int subcategoryId,
             string creatorId)
         {
             var entity = new Product()
@@ -34,8 +34,8 @@ namespace AutoParts_ShopAndForum.Core.Services
                 CreatorId = creatorId
             };
 
-            await _repository.AddAsync(entity);
-            await _repository.SaveChangesAsync();
+            _repository.Add(entity);
+            _repository.SaveChangesAsync();
 
             return entity.Id;
         }

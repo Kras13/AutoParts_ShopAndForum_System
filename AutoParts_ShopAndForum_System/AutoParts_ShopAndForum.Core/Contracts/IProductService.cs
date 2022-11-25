@@ -5,7 +5,7 @@ namespace AutoParts_ShopAndForum.Core.Contracts
 {
     public interface IProductService
     {
-        Task<int> AddAsync(string name, decimal price, string imageUrl, string description, int subcategoryId, string creatorId);
+        int Add(string name, decimal price, string imageUrl, string description, int subcategoryId, string creatorId);
 
         ProductQueryModel GetQueried(
             int currentPage,

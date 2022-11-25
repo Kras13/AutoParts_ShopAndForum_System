@@ -10,8 +10,6 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
 
         Task<T> GetByIdAsync<T>(object id) where T : class;
 
-        public Task AddAsync<T>(T entity) where T : class;
-
         public void Add<T>(T entity) where T : class;
 
         void SaveChanges();
