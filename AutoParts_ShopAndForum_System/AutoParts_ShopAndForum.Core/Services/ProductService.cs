@@ -51,7 +51,7 @@ namespace AutoParts_ShopAndForum.Core.Services
             ICollection<int> selectedSubcategories = null)
         {
             var entities = _repository
-                .All<Product>()
+                .AllAsReadOnly<Product>()
                 .Include(c => c.Subcategory)
                 .ThenInclude(c => c.Category)
                 .AsQueryable();
@@ -124,6 +124,50 @@ namespace AutoParts_ShopAndForum.Core.Services
             }
 
             return result;
+        }
+
+        public ProductModel GetById(int id)
+        {
+            var model = _repository.AllAsReadOnly<Product>().FirstOrDefault(p => p.Id == id);
+
+            if (model != null)
+            {
+                return new ProductModel()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Price = model.Price,
+                    SubcategoryId = model.SubcategoryId,
+                    Description = model.Description,
+                    ImageUrl = model.ImageUrl,
+                    Creatorid = model.CreatorId
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public ProductModel Update(ProductModel product)
+        {
+            var model = _repository.All<Product>()
+                .FirstOrDefault(e => e.Id == product.Id);
+
+            if (model == null)
+            {
+                throw new ArgumentException("ProductService.Update -> product with the selected id can not be found");
+            }
+
+            model.Name = product.Name;
+            model.Price = product.Price;
+            model.ImageUrl= product.ImageUrl;
+            model.Description = product.Description;
+            model.SubcategoryId = product.SubcategoryId;
+
+            _repository.SaveChanges();
+
+            return product;
         }
     }
 }

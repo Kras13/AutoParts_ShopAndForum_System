@@ -1,10 +1,12 @@
 ﻿@using AutoParts_ShopAndForum_System.Areas.Seller.Models;
 
 @{
-    ViewData["Title"] = "Add Product";
+    ViewData["Title"] = "Edit Product";
 }
 
 @model ProductAddInputModel
+
+@*<input type="hidden" asp-for="ProductId"/>*@
 
 <partial  name="_ProductAddpartial" model="@Model"></partial>
 

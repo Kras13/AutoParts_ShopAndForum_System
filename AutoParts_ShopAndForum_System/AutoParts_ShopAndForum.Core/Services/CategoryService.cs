@@ -18,7 +18,7 @@ namespace AutoParts_ShopAndForum.Core.Services
         public ICollection<CategoryModel> GetAll()
         {
             return _repository
-                .All<Category>()
+                .AllAsReadOnly<Category>()
                 .Select(m => new CategoryModel()
                 {
                     Id = m.Id,
@@ -31,7 +31,7 @@ namespace AutoParts_ShopAndForum.Core.Services
 
         public ICollection<SubcategoryModel> GetAllSubcategories()
         {
-            return _repository.All<Subcategory>()
+            return _repository.AllAsReadOnly<Subcategory>()
                 .Select(m => new SubcategoryModel() { Id = m.Id, Name = m.Name })
                 .ToArray();
         }

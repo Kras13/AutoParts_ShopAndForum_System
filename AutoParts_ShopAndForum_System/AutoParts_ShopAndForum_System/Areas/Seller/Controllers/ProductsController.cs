@@ -1,6 +1,9 @@
 ﻿using AutoParts_ShopAndForum.Core.Contracts;
+using AutoParts_ShopAndForum.Core.Models.Product;
+using AutoParts_ShopAndForum.Infrastructure.Data;
 using AutoParts_ShopAndForum_System.Areas.Seller.Models;
 using AutoParts_ShopAndForum_System.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
@@ -48,6 +51,46 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
                  model.SelectedSubcategoryId,
                  this.User.GetId()
              );
+
+            return RedirectToAction("All", "Products", new { area = "" });
+        }
+
+        [Authorize(Roles = Role.Administrator)]
+        public IActionResult Edit(int productId)
+        {
+            var product = _productService.GetById(productId);
+            var model = new ProductAddInputModel()
+            {
+                ProductId = productId,
+                Subcategories = _categoryService.GetAllSubcategories(),
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                SelectedSubcategoryId = product.SubcategoryId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Role.Administrator)]
+        public IActionResult Edit(ProductAddInputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model.ProductId);
+            }
+
+            _productService.Update(new ProductModel()
+            {
+                Id = model.ProductId,
+                Name = model.Name,
+                Price = model.Price,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl,
+                SubcategoryId = model.SelectedSubcategoryId
+            });
 
             return RedirectToAction("All", "Products", new { area = "" });
         }

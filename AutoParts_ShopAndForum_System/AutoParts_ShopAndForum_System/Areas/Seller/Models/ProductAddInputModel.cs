@@ -6,6 +6,8 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Models
 {
     public class ProductAddInputModel
     {
+        public int ProductId { get; set; }
+
         [Required]
         [MaxLength(ProductConstants.NameMaxLength)]
         [MinLength(2, ErrorMessage = "Please enter at least 2 symbols")]

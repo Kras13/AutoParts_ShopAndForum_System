@@ -16,7 +16,7 @@ namespace AutoParts_ShopAndForum.Core.Services
         public ICollection<TownModel> GetAll()
         {
             return this._repository
-                .All<Town>()
+                .AllAsReadOnly<Town>()
                 .Select(m => new TownModel() { Id = m.Id, Name = m.Name})
                 .ToArray();
         }

@@ -3,9 +3,6 @@ using AutoParts_ShopAndForum.Core.Models;
 using AutoParts_ShopAndForum_System.Models.Subcategory;
 using AutoParts_ShopAndForum_System.Models.Pagination;
 using AutoParts_ShopAndForum.Core.Services;
-using Microsoft.CodeAnalysis.Options;
-using Newtonsoft.Json.Linq;
-using System.Xml.Linq;
 
 namespace AutoParts_ShopAndForum_System.Models.Product
 {
@@ -30,7 +27,6 @@ namespace AutoParts_ShopAndForum_System.Models.Product
                 new SortingViewModel() {DisplayText = "Name descending", Sorting = ProductSorting.NameDescending},
                 new SortingViewModel() {DisplayText = "Date added ascending", Sorting = ProductSorting.DateAscenging},
                 new SortingViewModel() {DisplayText = "Date added descending", Sorting = ProductSorting.DateDescending},
-
             };
         }
 

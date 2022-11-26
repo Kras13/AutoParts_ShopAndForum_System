@@ -18,7 +18,8 @@ namespace AutoParts_ShopAndForum.Core.Services
 
         public PostModel ById(int postId)
         {
-            var post = this._repository.All<Post>()
+            var post = this._repository
+                .AllAsReadOnly<Post>()
                 .Include(p => p.Comments)
                 .ThenInclude(cp => cp.User)
                 .Include(c => c.Creator)

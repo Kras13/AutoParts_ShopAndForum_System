@@ -16,7 +16,7 @@ namespace AutoParts_ShopAndForum.Core.Services
         public ICollection<SubcategoryModel> GetAll(int? categoryId = null)
         {
             var result = _repository
-                .All<Subcategory>();
+                .AllAsReadOnly<Subcategory>();
 
             if (categoryId.HasValue)
             {

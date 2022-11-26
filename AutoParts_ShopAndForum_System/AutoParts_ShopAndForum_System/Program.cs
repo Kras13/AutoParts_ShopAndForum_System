@@ -1,12 +1,14 @@
 using AutoParts_ShopAndForum_System.Infrastructure;
 using AutoParts_ShopAndForum_System.ModelBinders;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using AutoParts_ShopAndForum.Infrastructure.Data;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var cultureInfo = new CultureInfo("en-US");
+cultureInfo.NumberFormat.NumberGroupSeparator = ".";
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
 builder.Services.ConfigureContextIdentity();

@@ -29,11 +29,6 @@ namespace AutoParts_ShopAndForum.Infrastructure.Data.Common
             return _context.Set<T>();
         }
 
-        public async Task<T> GetByIdAsync<T>(object id) where T : class
-        {
-            return await DbSet<T>().FindAsync(id);
-        }
-
         public void Add<T>(T entity) where T : class
         {
             DbSet<T>().Add(entity);

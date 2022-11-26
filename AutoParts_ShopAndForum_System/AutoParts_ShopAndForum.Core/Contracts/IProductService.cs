@@ -14,5 +14,9 @@ namespace AutoParts_ShopAndForum.Core.Contracts
             ProductSorting sorting,
             int? categoryId = null,
             ICollection<int> selectedSubcategories = null);
+
+        ProductModel GetById(int id);
+
+        ProductModel Update(ProductModel product);
     }
 }
