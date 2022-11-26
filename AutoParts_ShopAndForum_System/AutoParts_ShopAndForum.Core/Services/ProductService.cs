@@ -16,6 +16,8 @@ namespace AutoParts_ShopAndForum.Core.Services
             _repository = repository;
         }
 
+        public const int AllProducts = -1;
+
         public int Add(
             string name,
             decimal price,
@@ -99,12 +101,11 @@ namespace AutoParts_ShopAndForum.Core.Services
                     .Where(e => e.Subcategory.CategoryId == categoryId);
             }
 
-            return new ProductQueryModel()
+            var result = new ProductQueryModel()
             {
                 TotalProductsWithoutPagination = entities.Count(),
                 Products = entities
                 .Skip((currentPage - 1) * productsPerPage)
-                .Take(productsPerPage)
                 .Select(e => new ProductModel()
                 {
                     Id = e.Id,
@@ -116,6 +117,13 @@ namespace AutoParts_ShopAndForum.Core.Services
                     Price = e.Price
                 }).ToArray()
             };
+
+            if (productsPerPage > AllProducts)
+            {
+                result.Products = result.Products.Take(productsPerPage).ToArray();
+            }
+
+            return result;
         }
     }
 }

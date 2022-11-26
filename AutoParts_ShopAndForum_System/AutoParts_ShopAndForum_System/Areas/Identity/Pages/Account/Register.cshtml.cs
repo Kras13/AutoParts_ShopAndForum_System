@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Xml.Linq;
 using AutoParts_ShopAndForum.Core.Contracts;
 using AutoParts_ShopAndForum.Core.Models.Town;
 using AutoParts_ShopAndForum.Infrastructure.Data.Models;

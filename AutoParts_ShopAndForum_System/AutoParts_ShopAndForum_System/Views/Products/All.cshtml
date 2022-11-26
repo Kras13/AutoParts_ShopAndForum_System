@@ -25,13 +25,11 @@
                         <li class="nav-item active">
                             <select asp-for="Sorting" class="form-control" onchange="this.form.submit()">
                                 <option value="" hidden selected>Sort by</option>
-                                <option value="0">No sorting</option>
-                                <option value="1">Price ascending</option>
-                                <option value="2">Price descending</option>
-                                <option value="3">Name ascending</option>
-                                <option value="4">Name descending</option>
-                                <option value="5">Date added ascending</option>
-                                <option value="6">Date added descending</option>
+
+                                @foreach (var product in Model.Sortings)
+                                {
+                                    <option value="@(product.Sorting)">@product.DisplayText</option>
+                                }
                             </select>
                         </li>
                     </ul>
@@ -51,9 +49,10 @@
                     <ul class="pagination">
                         <li>
                             <select asp-for="ProductsPerPage" class="form-control" onchange="this.form.submit()" onclick=" InvalidatePaging()">
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="10">10</option>
+                                @foreach (var page in Model.Pages)
+                                {
+                                    <option value="@(page.PageIndex)">@(page.DisplayText)</option>
+                                }
                             </select>
                         </li>
                     </ul>
