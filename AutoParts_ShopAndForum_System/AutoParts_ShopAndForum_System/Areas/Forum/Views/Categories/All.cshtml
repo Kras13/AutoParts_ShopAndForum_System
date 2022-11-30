@@ -1,0 +1,35 @@
+﻿@using AutoParts_ShopAndForum.Core.Models.ForumCategory;
+
+@model ICollection<ForumCategoryModel>
+
+@{
+    ViewData["Title"] = "Forum categories";
+}
+
+<div class="text-center">
+    <h1 class="display-3">@this.ViewData["Title"]</h1>
+
+    @if (Model.Count > 0)
+    {
+        <a asp-controller="Posts" asp-action="Create" class="btn btn-primary btn-blue">Create new post</a>
+    }
+
+</div>
+
+<hr />
+<div class="row">
+    @foreach (var category in Model)
+    {
+        <div class="col-md-4 media">
+            <img src="@category.ImageUrl" width="100" class="mr-3" alt="@category.Name">
+            <div class="media-body">
+                <h5 class="mt-0">
+                    <a asp-controller="Posts" asp-action="ByCategoryId" asp-route-categoryId="@(category.Id)">
+                        @category.Name (@category.PostsCount)
+                    </a>
+                </h5>
+                @category.Description
+            </div>
+        </div>
+    }
+</div>
