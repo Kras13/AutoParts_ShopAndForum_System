@@ -4,6 +4,10 @@ namespace AutoParts_ShopAndForum.Core.Contracts
 {
     public interface IPostService
     {
-        public PostModel ById(int id);
+        void Add(string title, string content, int categoryId, string creatorId);
+
+        PostModel ById(int id);
+
+        ICollection<PostModel> ByCategoryId(int id);
     }
 }

@@ -15,6 +15,21 @@ namespace AutoParts_ShopAndForum.Core.Services
         {
             _repository = repository;
         }
+        public void Add(string title, string content, int categoryId, string creatorId)
+        {
+            var post = new Post()
+            {
+                Title = title,
+                Content = content,
+                CreatedOn = DateTime.UtcNow,
+                PostCategoryId = categoryId,
+                CraetorId = creatorId
+            };
+
+            _repository.Add(post);
+
+            _repository.SaveChanges();
+        }
 
         public PostModel ById(int postId)
         {
@@ -75,6 +90,15 @@ namespace AutoParts_ShopAndForum.Core.Services
             var parentReference = comments.FirstOrDefault(n => n.Id == comment.Parent.Id);
 
             return parentReference;
+        }
+
+        public ICollection<PostModel> ByCategoryId(int id)
+        {
+            return _repository.All<Post>()
+                .Where(e => e.PostCategoryId == id)
+                .Select(e => new PostModel()
+                {
+                }).ToArray();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace AutoParts_ShopAndForum_System.Areas.Forum.Models
         [Required]
         public int PostCategoryId { get; set; }
 
-        public string CreatorId { get; set; }
+        public string? CreatorId { get; set; }
 
-        public ICollection<PostCategoryViewModel> Categories { get; set; }
+        public ICollection<PostCategoryViewModel>? Categories { get; set; }
     }
 }
