@@ -1,4 +1,5 @@
 ﻿using AutoParts_ShopAndForum.Core.Models.Comment;
+using Ganss.XSS;
 
 namespace AutoParts_ShopAndForum.Core.Models.Post
 {
@@ -9,6 +10,14 @@ namespace AutoParts_ShopAndForum.Core.Models.Post
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitaziedContent
+        {
+            get
+            {
+                return new HtmlSanitizer().Sanitize(this.Content);
+            }
+        }
 
         public ICollection<CommentModel> Comments { get; set; }
 

@@ -1,10 +1,20 @@
-﻿namespace AutoParts_ShopAndForum.Core.Models.Comment
+﻿using Ganss.XSS;
+
+namespace AutoParts_ShopAndForum.Core.Models.Comment
 {
     public class CommentModel
     {
         public int Id { get; set; }
 
         public string Content { get; set; }
+
+        public string SanitaziedContent
+        {
+            get
+            {
+                return new HtmlSanitizer().Sanitize(this.Content);
+            }
+        }
 
         public int? ParentId { get; set; }
 
