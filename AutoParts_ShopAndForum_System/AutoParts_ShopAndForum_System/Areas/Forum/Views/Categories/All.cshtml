@@ -24,7 +24,7 @@
             <img src="@category.ImageUrl" width="100" class="mr-3" alt="@category.Name">
             <div class="media-body">
                 <h5 class="mt-0">
-                    <a asp-controller="Posts" asp-action="ByCategoryId" asp-route-categoryId="@(category.Id)">
+                    <a asp-controller="Posts" asp-action="List" asp-route-categoryId="@(category.Id)">
                         @category.Name (@category.PostsCount)
                     </a>
                 </h5>

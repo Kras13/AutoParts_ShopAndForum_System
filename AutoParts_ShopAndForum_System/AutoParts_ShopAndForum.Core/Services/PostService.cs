@@ -94,10 +94,27 @@ namespace AutoParts_ShopAndForum.Core.Services
 
         public ICollection<PostModel> ByCategoryId(int id)
         {
-            return _repository.All<Post>()
+            return _repository
+                .All<Post>()
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.User)
                 .Where(e => e.PostCategoryId == id)
                 .Select(e => new PostModel()
                 {
+                    Id = e.Id,
+                    Title = e.Title,
+                    Content = e.Content,
+                    CreatedOn = e.CreatedOn.ToShortDateString(),
+                    CreatorUserName = e.Creator.UserName,
+                    Comments = e.Comments.Select(c =>
+                        new CommentModel()
+                        {
+                            Id = c.Id,
+                            ParentId = c.ParentId,
+                            Content= c.Content,
+                            CreatedOn = c.CreatedOn.ToShortDateString(),
+                            CreatorUsername = c.User.UserName
+                        }).ToArray()
                 }).ToArray();
         }
     }

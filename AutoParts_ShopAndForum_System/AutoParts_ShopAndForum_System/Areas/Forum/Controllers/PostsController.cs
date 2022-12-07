@@ -33,7 +33,8 @@ namespace AutoParts_ShopAndForum_System.Areas.Forum.Controllers
                     Id = m.Id,
                     Author = m.CreatorUserName,
                     DateCreate = m.CreatedOn,
-                    Title = m.Title
+                    Title = m.Title,
+                    CommentsCount = m.Comments.Count
                 }).ToArray();
 
             return View(model);
