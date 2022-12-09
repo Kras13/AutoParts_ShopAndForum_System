@@ -52,6 +52,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
             services.AddTransient<ITownService, TownService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IForumCategoryService, ForumCategoryService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             return services;
         }

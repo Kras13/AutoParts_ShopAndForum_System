@@ -9,5 +9,7 @@ namespace AutoParts_ShopAndForum.Core.Contracts
         PostModel ById(int id);
 
         ICollection<PostModel> ByCategoryId(int id);
+
+        bool ContainsComment(int postId, int commentId);
     }
 }

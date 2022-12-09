@@ -4,6 +4,7 @@ using AutoParts_ShopAndForum.Core.Models.Post;
 using AutoParts_ShopAndForum.Infrastructure.Data.Common;
 using AutoParts_ShopAndForum.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace AutoParts_ShopAndForum.Core.Services
 {
@@ -116,6 +117,20 @@ namespace AutoParts_ShopAndForum.Core.Services
                             CreatorUsername = c.User.UserName
                         }).ToArray()
                 }).ToArray();
+        }
+
+        public bool ContainsComment(int postId, int commentId)
+        {
+            var post = _repository.All<Post>()
+                .Include(p => p.Comments)
+                .FirstOrDefault(e => e.Id == postId);
+
+            if (post == null)
+            {
+                throw new ArgumentException("PostService.ContainsComment -> Post does not exist");
+            }
+
+            return post.Comments.FirstOrDefault(e => e.Id == commentId) != null;
         }
     }
 }

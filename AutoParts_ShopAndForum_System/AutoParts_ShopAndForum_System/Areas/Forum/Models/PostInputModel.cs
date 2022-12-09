@@ -10,7 +10,6 @@ namespace AutoParts_ShopAndForum_System.Areas.Forum.Models
         [Required]
         public string Content { get; set; }
 
-
         [Required]
         public int PostCategoryId { get; set; }
 
