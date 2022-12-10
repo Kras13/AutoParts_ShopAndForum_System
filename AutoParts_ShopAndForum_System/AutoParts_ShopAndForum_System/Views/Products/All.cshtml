@@ -7,11 +7,11 @@
 }
 
 @{
-    double lastPage = 1;
+    int lastPage = 1;
 
     if (Model.TotalProducts > 0)
     {
-        lastPage = Math.Ceiling((double)Model.TotalProducts / Model.ProductsPerPage);
+        lastPage = (int)Math.Ceiling((double)Model.TotalProducts / Model.ProductsPerPage);
     }
 }
 
@@ -73,7 +73,15 @@
                         </li>
                         <li class="page-item active"><a class="page-link" href="#">@Model.CurrentPage</a></li>
                         <li class="page-item">
-                            <button class="btn btn-primary float-left" @(Model.CurrentPage == lastPage ? "disabled" : string.Empty)
+                            @{
+                                string enableButton = String.Empty;
+
+                                if (Model.TotalProducts == Model.Products.Count || Model.CurrentPage == lastPage)
+                                {
+                                    enableButton = "disabled";
+                                }
+                            }
+                            <button class="btn btn-primary float-left" @(enableButton)
                                     name="Pagination" value="Next" onclick="ChangePage(@Model.CurrentPage + 1)" id="btnNext">
                                 Next
                             </button>

@@ -15,7 +15,7 @@ namespace AutoParts_ShopAndForum_System.Models.Product
                 new PageViewModel() {DisplayText = "2", PageIndex = 2},
                 new PageViewModel() {DisplayText = "3", PageIndex = 3},
                 new PageViewModel() {DisplayText = "10", PageIndex = 10},
-                new PageViewModel() {DisplayText = "Всички", PageIndex = ProductService.AllProducts}
+                new PageViewModel() {DisplayText = "All", PageIndex = ProductService.AllProducts}
             };
 
             Sortings = new List<SortingViewModel>()
