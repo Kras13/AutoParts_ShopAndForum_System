@@ -40,6 +40,7 @@
                                 <div class="col-12">
                                     <div class="d-flex flex-column">
                                         <p class="text mb-1">Street</p>
+                                        <label class="alert-danger" id="streetAlert"></label>
                                         <input id="streetName" class="form-control mb-3" type="text" placeholder="Vasil Levski Str">
                                     </div>
                                 </div>
@@ -204,20 +205,27 @@
 
         $(function () {
             $('#FinaliseButton').click(function () {
-                var form = $('#__AjaxAntiForgeryForm');
-                var token = $('input[name="__RequestVerificationToken"]', form).val();
-
-                var currentTownId = $('#townSelection').find(":selected").val();
                 var currentStreet = $('#streetName').val();
 
-                $.ajax({
-                    type: "POST",
-                    url: "/Cart/Finalise",
-                    data: { __RequestVerificationToken: token, street: currentStreet, townId: currentTownId },
-                    success: function () {
-                        location.reload();
-                    }
-                });
+                if (currentStreet != "") {
+                    var form = $('#__AjaxAntiForgeryForm');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                    var currentTownId = $('#townSelection').find(":selected").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Cart/Finalise",
+                        data: { __RequestVerificationToken: token, street: currentStreet, townId: currentTownId },
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                }
+                else {
+                    $('#streetAlert').html("Please enter street name");
+                }
+
             });
         });
     </script>

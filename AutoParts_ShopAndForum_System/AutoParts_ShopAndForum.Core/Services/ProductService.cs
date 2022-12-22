@@ -30,9 +30,18 @@ namespace AutoParts_ShopAndForum.Core.Services
                 .All<Subcategory>()
                 .FirstOrDefault(e => e.Id == subcategoryId);
 
-            if (subCategory == null) 
+            if (subCategory == null)
             {
                 throw new ArgumentException("Subactegory not found");
+            }
+
+            var user = _repository
+                .All<User>()
+                .FirstOrDefault(e => e.Id == creatorId);
+
+            if (user == null)
+            {
+                throw new ArgumentException("User not found");
             }
 
             var entity = new Product()
@@ -170,7 +179,7 @@ namespace AutoParts_ShopAndForum.Core.Services
 
             model.Name = product.Name;
             model.Price = product.Price;
-            model.ImageUrl= product.ImageUrl;
+            model.ImageUrl = product.ImageUrl;
             model.Description = product.Description;
             model.SubcategoryId = product.SubcategoryId;
 
