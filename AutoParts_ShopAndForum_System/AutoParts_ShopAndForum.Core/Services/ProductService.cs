@@ -4,6 +4,7 @@ using AutoParts_ShopAndForum.Core.Models.Product;
 using AutoParts_ShopAndForum.Infrastructure.Data.Common;
 using AutoParts_ShopAndForum.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace AutoParts_ShopAndForum.Core.Services
 {
@@ -55,7 +56,7 @@ namespace AutoParts_ShopAndForum.Core.Services
             };
 
             _repository.Add(entity);
-            _repository.SaveChangesAsync();
+            _repository.SaveChanges();
 
             return entity.Id;
         }
@@ -119,7 +120,14 @@ namespace AutoParts_ShopAndForum.Core.Services
                     .Where(e => e.Subcategory.CategoryId == categoryId);
             }
 
-            var result = new ProductQueryModel()
+            var result = new ProductQueryModel();
+
+            if (productsPerPage == AllProducts)
+            {
+                productsPerPage = 0;
+            }
+
+            result = new ProductQueryModel()
             {
                 TotalProductsWithoutPagination = entities.Count(),
                 Products = entities
@@ -136,7 +144,7 @@ namespace AutoParts_ShopAndForum.Core.Services
                 }).ToArray()
             };
 
-            if (productsPerPage > AllProducts)
+            if (productsPerPage > 0)
             {
                 result.Products = result.Products.Take(productsPerPage).ToArray();
             }

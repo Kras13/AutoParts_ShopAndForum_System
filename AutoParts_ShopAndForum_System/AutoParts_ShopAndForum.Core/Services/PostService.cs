@@ -18,6 +18,24 @@ namespace AutoParts_ShopAndForum.Core.Services
         }
         public void Add(string title, string content, int categoryId, string creatorId)
         {
+            var creator = _repository
+                .All<User>()
+                .FirstOrDefault(e => e.Id == creatorId);
+
+            if (creator == null)
+            {
+                throw new ArgumentException("Creator does not exist");
+            }
+
+            var category = _repository
+                .All<PostCategory>()
+                .FirstOrDefault(e => e.Id == categoryId);
+
+            if (category == null)
+            {
+                throw new ArgumentException("Category does not exist");
+            }
+
             var post = new Post()
             {
                 Title = title,
