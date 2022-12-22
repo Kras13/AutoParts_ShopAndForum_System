@@ -55,7 +55,7 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
             return RedirectToAction("All", "Products", new { area = "" });
         }
 
-        [Authorize(Roles = Role.Administrator)]
+        [Authorize(Roles = RoleType.Administrator)]
         public IActionResult Edit(int productId)
         {
             var product = _productService.GetById(productId);
@@ -74,7 +74,7 @@ namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Role.Administrator)]
+        [Authorize(Roles = RoleType.Administrator)]
         public IActionResult Edit(ProductAddInputModel model)
         {
             if (!ModelState.IsValid)

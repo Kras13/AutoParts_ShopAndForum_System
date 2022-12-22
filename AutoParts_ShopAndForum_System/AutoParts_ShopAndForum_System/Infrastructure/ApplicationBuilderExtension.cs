@@ -163,7 +163,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
             bool adminRoleExists = await roleManager
-                .RoleExistsAsync(Role.Administrator);
+                .RoleExistsAsync(RoleType.Administrator);
 
             if (adminRoleExists)
             {
@@ -171,7 +171,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
             }
 
             IdentityResult result =
-                await roleManager.CreateAsync(new IdentityRole(Role.Administrator));
+                await roleManager.CreateAsync(new IdentityRole(RoleType.Administrator));
 
             if (result.Succeeded)
             {
@@ -190,7 +190,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
 
                 await userManager.CreateAsync(user, adminPassword);
 
-                await userManager.AddToRoleAsync(user, Role.Administrator);
+                await userManager.AddToRoleAsync(user, RoleType.Administrator);
             }
         }
 
@@ -200,7 +200,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
             bool sellerRoleExists = await roleManager
-                .RoleExistsAsync(Role.Seller);
+                .RoleExistsAsync(RoleType.Seller);
 
             if (sellerRoleExists)
             {
@@ -208,7 +208,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
             }
 
             IdentityResult result =
-                await roleManager.CreateAsync(new IdentityRole(Role.Seller));
+                await roleManager.CreateAsync(new IdentityRole(RoleType.Seller));
 
             if (result.Succeeded)
             {
@@ -226,7 +226,7 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
                 };
 
                 await userManager.CreateAsync(user, sellerPassword);
-                await userManager.AddToRoleAsync(user, Role.Seller);
+                await userManager.AddToRoleAsync(user, RoleType.Seller);
             }
         }
     }

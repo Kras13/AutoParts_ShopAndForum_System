@@ -12,12 +12,12 @@ namespace AutoParts_ShopAndForum_System.Infrastructure
 
         public static bool IsAdmin(this ClaimsPrincipal user)
         {
-            return user.IsInRole(Role.Administrator);
+            return user.IsInRole(RoleType.Administrator);
         }
 
         public static bool IsSeller(this ClaimsPrincipal user)
         {
-            return user.IsInRole(Role.Seller);
+            return user.IsInRole(RoleType.Seller);
         }
     }
 }

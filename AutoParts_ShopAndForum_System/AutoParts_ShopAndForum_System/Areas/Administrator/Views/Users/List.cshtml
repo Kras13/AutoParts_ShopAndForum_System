@@ -1,0 +1,22 @@
+﻿@using AutoParts_ShopAndForum_System.Areas.Administrator.Models;
+@model ICollection<UserListViewModel>
+
+@if (Model != null)
+{
+    @foreach (var user in Model)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    @user.Fullname
+                </div>
+                <div class="col-sm">
+                    @user.Email
+                </div>
+                <div class="col-sm">
+                    @user.CurrentUserRole
+                </div>
+            </div>
+        </div>
+    }
+}

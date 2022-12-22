@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParts_ShopAndForum_System", "AutoParts_ShopAndForum_System\AutoParts_ShopAndForum_System.csproj", "{D29A459C-8B1B-47CE-8A0C-A0FF3499622D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoParts_ShopAndForum.Infrastructure", "AutoParts_ShopAndForum.Infrastructure\AutoParts_ShopAndForum.Infrastructure.csproj", "{CAD0620A-499B-4856-992E-1E5192052707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParts_ShopAndForum.Infrastructure", "AutoParts_ShopAndForum.Infrastructure\AutoParts_ShopAndForum.Infrastructure.csproj", "{CAD0620A-499B-4856-992E-1E5192052707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoParts_ShopAndForum.Core", "AutoParts_ShopAndForum.Core\AutoParts_ShopAndForum.Core.csproj", "{6D30C7AC-26D8-410F-892F-693EC8AED26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoParts_ShopAndForum.Core", "AutoParts_ShopAndForum.Core\AutoParts_ShopAndForum.Core.csproj", "{6D30C7AC-26D8-410F-892F-693EC8AED26F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoParts_ShopAndForum_System.Test", "AutoParts_ShopAndForum_System.Test\AutoParts_ShopAndForum_System.Test.csproj", "{A5E2352A-921E-439C-8BF1-39573A167B30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6D30C7AC-26D8-410F-892F-693EC8AED26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D30C7AC-26D8-410F-892F-693EC8AED26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D30C7AC-26D8-410F-892F-693EC8AED26F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E2352A-921E-439C-8BF1-39573A167B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E2352A-921E-439C-8BF1-39573A167B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E2352A-921E-439C-8BF1-39573A167B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E2352A-921E-439C-8BF1-39573A167B30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

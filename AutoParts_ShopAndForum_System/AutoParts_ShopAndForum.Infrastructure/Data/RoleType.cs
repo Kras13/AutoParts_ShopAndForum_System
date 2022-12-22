@@ -1,6 +1,6 @@
 ﻿namespace AutoParts_ShopAndForum.Infrastructure.Data
 {
-    public class Role
+    public class RoleType
     {
         public const string Administrator = "Administrator";
 

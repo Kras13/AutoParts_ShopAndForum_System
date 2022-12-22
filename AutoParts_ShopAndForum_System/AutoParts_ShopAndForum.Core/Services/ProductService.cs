@@ -26,6 +26,15 @@ namespace AutoParts_ShopAndForum.Core.Services
             int subcategoryId,
             string creatorId)
         {
+            var subCategory = _repository
+                .All<Subcategory>()
+                .FirstOrDefault(e => e.Id == subcategoryId);
+
+            if (subCategory == null) 
+            {
+                throw new ArgumentException("Subactegory not found");
+            }
+
             var entity = new Product()
             {
                 Name = name,

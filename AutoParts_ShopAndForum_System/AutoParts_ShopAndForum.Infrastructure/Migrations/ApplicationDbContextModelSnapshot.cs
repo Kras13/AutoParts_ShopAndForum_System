@@ -41,7 +41,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Comment", b =>
@@ -78,7 +78,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.MailHistory", b =>
@@ -115,7 +115,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("MailsHistories");
+                    b.ToTable("MailsHistories", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Order", b =>
@@ -153,7 +153,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.OrderProduct", b =>
@@ -174,7 +174,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrdersProducts");
+                    b.ToTable("OrdersProducts", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.PendingSeller", b =>
@@ -210,7 +210,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PendingSellers");
+                    b.ToTable("PendingSellers", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Post", b =>
@@ -247,7 +247,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("PostCategoryId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.PostCategory", b =>
@@ -274,7 +274,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PostCategories");
+                    b.ToTable("PostCategories", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Product", b =>
@@ -315,7 +315,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("SubcategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Subcategory", b =>
@@ -338,7 +338,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Subcategories");
+                    b.ToTable("Subcategories", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.Town", b =>
@@ -356,7 +356,7 @@ namespace AutoParts_ShopAndForum.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Towns");
+                    b.ToTable("Towns", (string)null);
                 });
 
             modelBuilder.Entity("AutoParts_ShopAndForum.Infrastructure.Data.Models.User", b =>

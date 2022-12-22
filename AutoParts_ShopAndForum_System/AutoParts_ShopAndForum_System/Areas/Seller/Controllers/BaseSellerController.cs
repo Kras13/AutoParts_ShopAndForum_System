@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoParts_ShopAndForum_System.Areas.Seller.Controllers
 {
-    [Area(Role.Seller)]
-    [Authorize(Roles = Role.Seller + "," + Role.Administrator)]
+    [Area(RoleType.Seller)]
+    [Authorize(Roles = RoleType.Seller + "," + RoleType.Administrator)]
     public abstract class BaseSellerController : Controller
     {
     }

@@ -22,9 +22,4 @@
     <ProjectReference Include="..\AutoParts_ShopAndForum.Core\AutoParts_ShopAndForum.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Administrator\Models\" />
-    <Folder Include="Areas\Administrator\Views\" />
-  </ItemGroup>
-
 </Project>
