@@ -47,10 +47,12 @@ namespace AutoParts_ShopAndForum_System.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [MinLength(6, ErrorMessage = "The {0} must be at least {1} characters long.")]
             [Display(Name = "Firstname")]
             public string FirstName { get; set; }
 
             [Required]
+            [MinLength(6, ErrorMessage = "The {0} must be at least {1} characters long.")]
             [Display(Name = "Lastname")]
             public string LastName { get; set; }
 

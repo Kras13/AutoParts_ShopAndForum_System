@@ -4,6 +4,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AutoParts_ShopAndForum.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
         options.ModelBinderProviders.Insert(0, new DecimalModelBiinderProvicer());
+        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
     });
 
 builder.Services.AddSession();
