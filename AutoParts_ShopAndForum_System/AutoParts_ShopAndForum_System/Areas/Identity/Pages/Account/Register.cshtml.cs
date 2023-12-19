@@ -135,6 +135,9 @@ namespace AutoParts_ShopAndForum_System.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+
+                Input.Towns = _townService.GetAll();
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);

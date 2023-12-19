@@ -8,6 +8,8 @@ namespace AutoParts_ShopAndForum_System.Test
         private const string InvalidEmail = "The Email field is not a valid e-mail address.";
         private const string TooShortPassword = "Password must be more than 2 characters.";
         private const string WrongEmailOrPassword = "Invalid login attempt.";
+        private const string AlreadyTakenEmail = "already taken";
+        private const string WrongConfirmationPassword = "The password and confirmation password do not match.";
 
         [SetUp]
         public void SetUp()
@@ -116,6 +118,84 @@ namespace AutoParts_ShopAndForum_System.Test
             bool hasLogOutButton = webDriver.FindElement(By.Id("logout")) != null;
 
             Assert.That(hasLogOutButton, Is.EqualTo(true));
+
+            webDriver.Close();
+        }
+
+        [Test]
+        public void TestRegistrationWithExistentEmail()
+        {
+            var webDriver = new EdgeDriver();
+
+            webDriver.Url = "https://localhost:44362/Identity/Account/Register";
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_FirstName")).SendKeys("DemoDemoDemo");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_LastName")).SendKeys("DemoDemoDemo");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_Email")).SendKeys("admin@abv.bg");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_Password")).SendKeys("somepassword");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_ConfirmPassword")).SendKeys("somepassword");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_EGN")).SendKeys("1111111111");
+
+            Thread.Sleep(300);
+
+            webDriver.FindElement(By.Id("register")).Click();
+
+            string validationText = webDriver.FindElement(By.Id("summaryValidationId")).Text;
+
+            var containsText = validationText.Contains(AlreadyTakenEmail);
+
+            Assert.That(containsText, Is.EqualTo(true));
+
+            Thread.Sleep(900);
+
+            webDriver.Close();
+        }
+
+        [Test]
+        public void TestRegistrationWithWrongConfirmationPassword()
+        {
+            var webDriver = new EdgeDriver();
+
+            webDriver.Url = "https://localhost:44362/Identity/Account/Register";
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_FirstName")).SendKeys("DemoDemoDemo");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_LastName")).SendKeys("DemoDemoDemo");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_Email")).SendKeys("demoemail@abv.bg");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_Password")).SendKeys("somepassword123456");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_ConfirmPassword")).SendKeys("somepassword123");
+
+            Thread.Sleep(300);
+            webDriver.FindElement(By.Id("Input_EGN")).SendKeys("1111111111");
+
+            Thread.Sleep(300);
+
+            webDriver.FindElement(By.Id("register")).Click();
+
+            string validationText = webDriver.FindElement(By.Id("Input_ConfirmPassword-error")).Text;
+
+            Assert.That(validationText, Is.EqualTo(WrongConfirmationPassword));
+
+            Thread.Sleep(900);
 
             webDriver.Close();
         }
