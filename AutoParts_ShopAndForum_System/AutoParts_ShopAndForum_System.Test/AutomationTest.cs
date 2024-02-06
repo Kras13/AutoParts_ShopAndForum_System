@@ -191,7 +191,7 @@ namespace AutoParts_ShopAndForum_System.Test
 
             webDriver.FindElement(By.Id("register")).Click();
 
-            string validationText = webDriver.FindElement(By.Id("Input_ConfirmPassword-error")).Text;
+            var validationText = webDriver.FindElement(By.Id("Input_ConfirmPassword-error")).Text;
 
             Assert.That(validationText, Is.EqualTo(WrongConfirmationPassword));
 
