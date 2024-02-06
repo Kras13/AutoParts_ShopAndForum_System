@@ -1,9 +1,6 @@
 using AutoParts_ShopAndForum_System.Infrastructure;
 using AutoParts_ShopAndForum_System.ModelBinders;
 using System.Globalization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using AutoParts_ShopAndForum.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);

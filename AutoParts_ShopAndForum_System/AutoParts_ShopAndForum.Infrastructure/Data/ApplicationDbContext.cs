@@ -17,7 +17,7 @@
             {
                 optionsBuilder
                     .UseSqlServer(
-                        "Server=DESKTOP-P07L97L\\SQLEXPRESS;Database=AutoParts_ShopAndForum_System;Trusted_Connection=True");
+                        "Server=DESKTOP-P07L97L\\SQLEXPRESS;Database=AutoParts_ShopAndForum_System_demo;Trusted_Connection=True");
             }
 
             base.OnConfiguring(optionsBuilder);
